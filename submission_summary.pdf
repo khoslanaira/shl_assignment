@@ -1,0 +1,155 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R 5 0 R] /Count 2 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >> >> >> /Contents 4 0 R >>
+endobj
+4 0 obj
+<< /Length 3222 >>
+stream
+BT
+/F1 10 Tf
+50 760 Td
+14 TL
+(CONVERSATIONAL SHL ASSESSMENT RECOMMENDER) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+(Approach) Tj
+T*
+(I built a FastAPI service with GET /health and POST /chat. The chat endpoint accepts a list) Tj
+T*
+(of user/assistant messages and returns a JSON response containing a reply, zero or more SHL) Tj
+T*
+(recommendations, and an end_of_conversation flag. The service supports clarifying questions) Tj
+T*
+(for vague requests, off-topic refusal, relevant recommendations, simple comparison requests,) Tj
+T*
+(and result refinement through the conversation history.) Tj
+T*
+() Tj
+T*
+(Retrieval and Grounding) Tj
+T*
+(The catalog is loaded from data/catalog.json, which was normalized from the official SHL) Tj
+T*
+(product catalog JSON linked in the assignment PDF. Each assessment record includes name,) Tj
+T*
+(URL, remote-testing support, adaptive/IRT support, test type metadata, duration, job levels,) Tj
+T*
+(languages, and description where available. A lightweight retrieval layer scores catalog) Tj
+T*
+(items against role and skill terms such as Java, Python, SQL, React, numerical reasoning,) Tj
+T*
+(verbal reasoning, personality, motivation, and mechanical comprehension. Retrieved catalog) Tj
+T*
+(rows are passed to the LLM as evidence. A hallucination guard validates every returned URL) Tj
+T*
+(against the catalog and falls back to catalog names when possible.) Tj
+T*
+() Tj
+T*
+(Prompt Design) Tj
+T*
+(The system prompt instructs the model to behave as an SHL Assessment Recommender, ask) Tj
+T*
+(exactly one clarifying question for vague requests, refuse off-topic questions, recommend) Tj
+T*
+(only catalog assessments, compare using only catalog metadata, and return valid JSON only.) Tj
+T*
+(The response schema is enforced by FastAPI/Pydantic and a post-processing validation layer.) Tj
+T*
+() Tj
+T*
+(LLM) Tj
+T*
+(The implementation uses the Google GenAI SDK. The model is configurable with GEMINI_MODEL) Tj
+T*
+(and defaults to gemini-2.0-flash. The API key is read from GEMINI_API_KEY in a root-level) Tj
+T*
+(.env file. If Gemini is unavailable or quota-limited, the service falls back to) Tj
+T*
+(deterministic catalog retrieval so the API remains usable.) Tj
+T*
+() Tj
+T*
+(Evaluation) Tj
+T*
+(I added evaluation/eval_cases.json and evaluation/evaluate.py. The evaluator sends) Tj
+T*
+(representative chat requests through the API and measures retrieval quality, recommendation) Tj
+T*
+(relevance, groundedness, and behavior accuracy. Metrics include recall against expected) Tj
+T*
+(assessments, precision of returned recommendations, groundedness by checking all URLs) Tj
+T*
+(against the catalog, and task behavior checks for clarify/refuse/recommend/compare flows.) Tj
+T*
+() Tj
+T*
+(Results) Tj
+T*
+(Current evaluation over six cases using the official 377-item catalog: mean recall 1.000,) Tj
+T*
+(mean precision 0.592, groundedness 1.000, and behavior accuracy 1.000. Precision is lower) Tj
+T*
+(than the small prototype catalog because broad role requests intentionally return several) Tj
+T*
+(related SHL options, up to the assignment limit of 10 recommendations. Unit tests also cover) Tj
+T*
+(health, vague queries, Java recommendations, turn-cap behavior, and off-topic refusal.) Tj
+T*
+() Tj
+T*
+(Page 1) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >> >> >> /Contents 6 0 R >>
+endobj
+6 0 obj
+<< /Length 572 >>
+stream
+BT
+/F1 10 Tf
+50 760 Td
+14 TL
+(What Did Not Work) Tj
+T*
+(The original virtual environment used Python 3.14, which failed to build the pinned) Tj
+T*
+(pydantic-core dependency. I created a Python 3.12 environment. The original deployment) Tj
+T*
+(config also referenced requirements.txt while the repo only had requirement.txt, so I added) Tj
+T*
+(requirements.txt. A hardcoded older Gemini model failed, so the model is now configurable) Tj
+T*
+(and defaults to gemini-2.0-flash. The root URL originally returned 404, so it now redirects) Tj
+T*
+(to /docs.) Tj
+T*
+(Page 2) Tj
+ET
+endstream
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000121 00000 n 
+0000000296 00000 n 
+0000003570 00000 n 
+0000003745 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R >>
+startxref
+4368
+%%EOF

@@ -1,0 +1,38 @@
+[
+  {
+    "id": "java_role",
+    "query": "I am hiring a Java developer who needs a coding assessment.",
+    "expected": ["Java 8 (New)"],
+    "behavior": "recommend"
+  },
+  {
+    "id": "data_analyst",
+    "query": "Recommend tests for a data analyst role with SQL and numerical reasoning.",
+    "expected": ["SQL (New)", "Verify - Numerical Ability"],
+    "behavior": "recommend"
+  },
+  {
+    "id": "frontend",
+    "query": "I need an assessment for a frontend React engineer.",
+    "expected": ["ReactJS (New)"],
+    "behavior": "recommend"
+  },
+  {
+    "id": "vague",
+    "query": "I want a test.",
+    "expected": [],
+    "behavior": "clarify"
+  },
+  {
+    "id": "off_topic",
+    "query": "What is the average salary for a Java developer?",
+    "expected": [],
+    "behavior": "refuse"
+  },
+  {
+    "id": "compare",
+    "query": "Compare numerical reasoning and verbal reasoning assessments.",
+    "expected": ["SHL Verify Interactive – Numerical Reasoning", "Verify - Verbal Ability - Next Generation"],
+    "behavior": "compare"
+  }
+]
